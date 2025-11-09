@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 заданий для Blender 3.4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        h1 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+            padding: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+            border: 2px solid #764ba2;
+        }
+        
+        td {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+        
+        tbody tr {
+            transition: all 0.3s ease;
+        }
+        
+        tbody tr:nth-child(odd) {
+            background-color: #f8f9ff;
+        }
+        
+        tbody tr:hover {
+            background-color: #e8f0fe;
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .task-number {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        .task-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .task-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .step {
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .step:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #f5576c;
+            font-weight: bold;
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .easy {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .medium {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .hard {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Изучаем Blender 3.4</h1>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">№</th>
+                        <th style="width: 20%;">Задание</th>
+                        <th style="width: 75%;">Описание и пошаговая инструкция</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="task-number">1</td>
+                        <td class="task-name">Создание простого куба</td>
+                        <td class="task-description">
+                            <div class="step">Откройте Blender 3.4</div>
+                            <div class="step">Удалите стандартный куб (X → Delete)</div>
+                            <div class="step">Добавьте новый куб: Shift+A → Mesh → Cube</div>
+                            <div class="step">Масштабируйте куб клавишей S, затем введите 2</div>
+                            <div class="step">Примените цвет: выберите Material Properties → New → измените Base Color</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">2</td>
+                        <td class="task-name">Моделирование стола</td>
+                        <td class="task-description">
+                            <div class="step">Добавьте куб для столешницы: Shift+A → Mesh → Cube</div>
+                            <div class="step">Масштабируйте по осям: S → Z → 0.1 (плоская столешница)</div>
+                            <div class="step">Затем S → X → 2, S → Y → 1.5</div>
+                            <div class="step">Добавьте 4 цилиндра для ножек: Shift+A → Mesh → Cylinder</div>
+                            <div class="step">Масштабируйте ножки: S → X,Y → 0.1, затем S → Z → 1.5</div>
+                            <div class="step">Переместите ножки в углы стола (клавиша G)</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">3</td>
+                        <td class="task-name">Освещение сцены</td>
+                        <td class="task-description">
+                            <div class="step">Выберите стандартный источник света</div>
+                            <div class="step">Переместите его: G → Z → 5</div>
+                            <div class="step">Измените тип света: Light Properties → Type → Area</div>
+                            <div class="step">Увеличьте мощность: Power → 500W</div>
+                            <div class="step">Добавьте второй свет: Shift+A → Light → Point Light</div>
+                            <div class="step">Настройте цвет света в Light Properties → Color</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">4</td>
+                        <td class="task-name">Создание материала с текстурой</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект</div>
+                            <div class="step">Перейдите в Shading workspace (вкладка вверху)</div>
+                            <div class="step">Нажмите New в Material Properties</div>
+                            <div class="step">В Shader Editor: Shift+A → Texture → Image Texture</div>
+                            <div class="step">Соедините Color из Image Texture с Base Color в Principled BSDF</div>
+                            <div class="step">Загрузите изображение через Open в ноде Image Texture</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">5</td>
+                        <td class="task-name">Модификатор Subdivision Surface</td>
+                        <td class="task-description">
+                            <div class="step">Создайте куб: Shift+A → Mesh → Cube</div>
+                            <div class="step">Выберите куб и перейдите в Modifier Properties (значок гаечного ключа)</div>
+                            <div class="step">Add Modifier → Subdivision Surface</div>
+                            <div class="step">Увеличьте Levels Viewport до 3</div>
+                            <div class="step">Добавьте модификатор Bevel для сглаживания краёв</div>
+                            <div class="step">Примените модификатор: правый клик → Apply</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">6</td>
+                        <td class="task-name">Создание простой чашки</td>
+                        <td class="task-description">
+                            <div class="step">Добавьте цилиндр: Shift+A → Mesh → Cylinder</div>
+                            <div class="step">Tab (Edit Mode) → выберите верхнюю грань</div>
+                            <div class="step">I (Inset) → двигайте мышью внутрь → клик</div>
+                            <div class="step">E (Extrude) → двигайте вниз → клик</div>
+                            <div class="step">Добавьте модификатор Solidify для толщины стенок</div>
+                            <div class="step">Добавьте ручку из тора: Shift+A → Mesh → Torus</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">7</td>
+                        <td class="task-name">Анимация вращения</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект для анимации</div>
+                            <div class="step">Перейдите на кадр 1 (Timeline внизу)</div>
+                            <div class="step">Нажмите I → Rotation для создания ключевого кадра</div>
+                            <div class="step">Перейдите на кадр 120</div>
+                            <div class="step">Поверните объект: R → Z → 360</div>
+                            <div class="step">Снова I → Rotation для второго ключевого кадра</div>
+                            <div class="step">Нажмите пробел для просмотра анимации</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">8</td>
+                        <td class="task-name">Создание стеклянного материала</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект и перейдите в Shading</div>
+                            <div class="step">В Principled BSDF установите Transmission = 1.0</div>
+                            <div class="step">Roughness = 0.0 для идеального стекла</div>
+                            <div class="step">IOR (Index of Refraction) = 1.45</div>
+                            <div class="step">Включите рендер Cycles: Render Properties → Cycles</div>
+                            <div class="step">Переключите Viewport Shading на режим рендера (Z → 8)</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">9</td>
+                        <td class="task-name">Моделирование подушки</td>
+                        <td class="task-description">
+                            <div class="step">Создайте куб: Shift+A → Mesh → Cube</div>
+                            <div class="step">Масштабируйте: S → Z → 0.3</div>
+                            <div class="step">Добавьте Subdivision Surface модификатор (2-3 уровня)</div>
+                            <div class="step">Tab (Edit Mode) → выберите все вершины (A)</div>
+                            <div class="step">Alt+S для масштабирования по нормалям → уменьшите</div>
+                            <div class="step">Добавьте Cloth Simulation для мягкости (Physics Properties)</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">10</td>
+                        <td class="task-name">Создание камеры и рендер</td>
+                        <td class="task-description">
+                            <div class="step">Выберите камеру в сцене</div>
+                            <div class="step">Нажмите Numpad 0 для вида из камеры</div>
+                            <div class="step">G для перемещения камеры, R для поворота</div>
+                            <div class="step">Ctrl+Alt+Numpad 0 для привязки камеры к текущему виду</div>
+                            <div class="step">Настройте разрешение: Output Properties → Resolution</div>
+                            <div class="step">F12 для рендера одного кадра</div>
+                            <div class="step">Image → Save As для сохранения</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">11</td>
+                        <td class="task-name">Модификатор Array</td>
+                        <td class="task-description">
+                            <div class="step">Создайте объект (например, куб)</div>
+                            <div class="step">Add Modifier → Array</div>
+                            <div class="step">Увеличьте Count до 10</div>
+                            <div class="step">Измените Relative Offset по осям X, Y, Z</div>
+                            <div class="step">Добавьте второй Array модификатор для сетки</div>
+                            <div class="step">Комбинируйте с Curve для создания рядов вдоль пути</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">12</td>
+                        <td class="task-name">Создание эмиссивного материала</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект, перейдите в Shading</div>
+                            <div class="step">В Principled BSDF найдите параметр Emission</div>
+                            <div class="step">Установите Emission Strength = 5.0 или выше</div>
+                            <div class="step">Выберите цвет свечения в Emission Color</div>
+                            <div class="step">Включите Bloom в Render Properties → Bloom</div>
+                            <div class="step">Переключите в режим рендера для просмотра</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">13</td>
+                        <td class="task-name">UV-развертка объекта</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект и перейдите в Edit Mode (Tab)</div>
+                            <div class="step">Выберите все грани (A)</div>
+                            <div class="step">U → Unwrap (или Smart UV Project)</div>
+                            <div class="step">Откройте UV Editor в другом окне</div>
+                            <div class="step">Настройте развертку, перемещая UV-острова</div>
+                            <div class="step">Экспортируйте UV Layout: UV → Export UV Layout</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">14</td>
+                        <td class="task-name">Создание лестницы</td>
+                        <td class="task-description">
+                            <div class="step">Создайте куб для одной ступени</div>
+                            <div class="step">Масштабируйте: S → X → 2, S → Z → 0.2</div>
+                            <div class="step">Добавьте Array модификатор</div>
+                            <div class="step">Count = 10, Relative Offset: Z = 1.5, Y = -1</div>
+                            <div class="step">Создайте перила из цилиндров с Array</div>
+                            <div class="step">Объедините элементы: Ctrl+J</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">15</td>
+                        <td class="task-name">Particle System - трава</td>
+                        <td class="task-description">
+                            <div class="step">Создайте плоскость: Shift+A → Mesh → Plane</div>
+                            <div class="step">Масштабируйте: S → 10</div>
+                            <div class="step">Перейдите в Particle Properties → New</div>
+                            <div class="step">Выберите Hair, Number = 5000</div>
+                            <div class="step">В Render измените Render As на Object</div>
+                            <div class="step">Создайте травинку из куба и выберите её как Instance Object</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">16</td>
+                        <td class="task-name">Модификатор Mirror</td>
+                        <td class="task-description">
+                            <div class="step">Создайте половину объекта (например, половину вазы)</div>
+                            <div class="step">Добавьте модификатор Mirror</div>
+                            <div class="step">Выберите ось отражения (X, Y или Z)</div>
+                            <div class="step">Включите Clipping для слияния центральных вершин</div>
+                            <div class="step">В Edit Mode редактируйте одну сторону</div>
+                            <div class="step">Примените модификатор после завершения</div>
+                            <span class="difficulty easy">Легко</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">17</td>
+                        <td class="task-name">Создание металлического материала</td>
+                        <td class="task-description">
+                            <div class="step">Перейдите в Shading workspace</div>
+                            <div class="step">В Principled BSDF: Metallic = 1.0</div>
+                            <div class="step">Roughness = 0.2-0.4 для полированного металла</div>
+                            <div class="step">Base Color → выберите цвет металла</div>
+                            <div class="step">Добавьте HDRI освещение: World Properties → Color → Environment Texture</div>
+                            <div class="step">Загрузите HDRI карту для реалистичных отражений</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">18</td>
+                        <td class="task-name">Sculpting - простая голова</td>
+                        <td class="task-description">
+                            <div class="step">Добавьте UV Sphere: Shift+A → Mesh → UV Sphere</div>
+                            <div class="step">Перейдите в Sculpting workspace</div>
+                            <div class="step">Используйте Draw brush для добавления объема</div>
+                            <div class="step">Grab brush (G) для перемещения областей</div>
+                            <div class="step">Smooth brush (S) для сглаживания</div>
+                            <div class="step">Создайте нос, глаза, рот базовыми формами</div>
+                            <div class="step">Используйте Remesh для увеличения детализации</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">19</td>
+                        <td class="task-name">Создание пончика (Donut)</td>
+                        <td class="task-description">
+                            <div class="step">Добавьте Torus: Shift+A → Mesh → Torus</div>
+                            <div class="step">Масштабируйте по необходимости</div>
+                            <div class="step">Tab → выберите верхние грани</div>
+                            <div class="step">Добавьте Subdivision Surface модификатор</div>
+                            <div class="step">Создайте материал глазури с Glossy shader</div>
+                            <div class="step">Добавьте посыпку через Particle System</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">20</td>
+                        <td class="task-name">Geometry Nodes - простой узел</td>
+                        <td class="task-description">
+                            <div class="step">Выберите объект</div>
+                            <div class="step">Перейдите в Geometry Nodes workspace</div>
+                            <div class="step">Нажмите New в Geometry Nodes Editor</div>
+                            <div class="step">Shift+A → Mesh → Mesh to Points</div>
+                            <div class="step">Shift+A → Instances → Instance on Points</div>
+                            <div class="step">Создайте объект для инстансирования (например, куб)</div>
+                            <div class="step">Соедините ноды: Group Input → Mesh to Points → Instance on Points → Group Output</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">21</td>
+                        <td class="task-name">Риггинг простого персонажа</td>
+                        <td class="task-description">
+                            <div class="step">Создайте простую модель человечка из кубов</div>
+                            <div class="step">Shift+A → Armature → Single Bone</div>
+                            <div class="step">Edit Mode (Tab) → E для экструдирования костей</div>
+                            <div class="step">Создайте скелет: позвоночник, руки, ноги</div>
+                            <div class="step">Выберите меш, затем арматуру: Ctrl+P → Automatic Weights</div>
+                            <div class="step">Pose Mode → тестируйте движения</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">22</td>
+                        <td class="task-name">Создание огня с симуляцией</td>
+                        <td class="task-description">
+                            <div class="step">Создайте куб: Shift+A → Mesh → Cube</div>
+                            <div class="step">Добавьте второй куб большего размера (домен)</div>
+                            <div class="step">Выберите малый куб: Physics Properties → Fluid → Flow</div>
+                            <div class="step">Flow Type → Fire</div>
+                            <div class="step">Выберите большой куб: Physics Properties → Fluid → Domain</div>
+                            <div class="step">Domain Type → Gas, нажмите Bake All</div>
+                            <div class="step">Анимация огня готова!</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">23</td>
+                        <td class="task-name">Создание комнаты</td>
+                        <td class="task-description">
+                            <div class="step">Создайте куб и масштабируйте: S → 5</div>
+                            <div class="step">Edit Mode → выберите одну грань → Delete → Faces</div>
+                            <div class="step">Alt+E → Extrude Faces Along Normals внутрь</div>
+                            <div class="step">Добавьте окна: выберите грань → I (Inset) → E → Delete</div>
+                            <div class="step">Добавьте пол, мебель из примитивов</div>
+                            <div class="step">Настройте освещение через окна</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">24</td>
+                        <td class="task-name">Cloth Simulation - скатерть</td>
+                        <td class="task-description">
+                            <div class="step">Создайте плоскость: Shift+A → Mesh → Plane</div>
+                            <div class="step">Subdivision Surface → 5-6 уровней для детализации</div>
+                            <div class="step">Physics Properties → Cloth → активируйте</div>
+                            <div class="step">Создайте стол под скатертью</div>
+                            <div class="step">Для стола: Physics Properties → Collision</div>
+                            <div class="step">Запустите анимацию (пробел) для симуляции падения</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">25</td>
+                        <td class="task-name">Volumetric Lighting</td>
+                        <td class="task-description">
+                            <div class="step">Создайте сцену с объектами</div>
+                            <div class="step">Shift+A → Light → Spot Light</div>
+                            <div class="step">Направьте свет на объекты</div>
+                            <div class="step">World Properties → Volume → Add Volume Scatter</div>
+                            <div class="step">Density = 0.01-0.05 для видимых лучей</div>
+                            <div class="step">Render Properties → Cycles → увеличьте Samples</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">26</td>
+                        <td class="task-name">Создание планеты</td>
+                        <td class="task-description">
+                            <div class="step">Добавьте UV Sphere: Shift+A → Mesh → UV Sphere</div>
+                            <div class="step">Subdivision Surface модификатор</div>
+                            <div class="step">Shading → добавьте Image Texture с картой планеты</div>
+                            <div class="step">Добавьте Bump/Normal map для рельефа</div>
+                            <div class="step">Создайте атмосферу из большей сферы с прозрачным материалом</div>
+                            <div class="step">Добавьте вращение через анимацию</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">27</td>
+                        <td class="task-name">Модификатор Boolean</td>
+                        <td class="task-description">
+                            <div class="step">Создайте два пересекающихся объекта (кубы)</div>
+                            <div class="step">Выберите первый объект</div>
+                            <div class="step">Add Modifier → Boolean</div>
+                            <div class="step">Operation → Difference (или Union, Intersect)</div>
+                            <div class="step">Object → выберите второй объект</div>
+                            <div class="step">Используйте для создания отверстий, вырезов</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">28</td>
+                        <td class="task-name">Создание дерева</td>
+                        <td class="task-description">
+                            <div class="step">Создайте цилиндр для ствола</div>
+                            <div class="step">Edit Mode → выберите верхнюю грань</div>
+                            <div class="step">E → экструдируйте несколько раз, масштабируя (S)</div>
+                            <div class="step">Для кроны: добавьте Ico Sphere</div>
+                            <div class="step">Subdivision Surface для сглаживания</div>
+                            <div class="step">Используйте Proportional Editing (O) для органичной формы</div>
+                            <div class="step">Создайте зеленый материал для листвы</div>
+                            <span class="difficulty medium">Средне</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">29</td>
+                        <td class="task-name">Compositing - цветокоррекция</td>
+                        <td class="task-description">
+                            <div class="step">Создайте и отрендерите сцену (F12)</div>
+                            <div class="step">Перейдите в Compositing workspace</div>
+                            <div class="step">Включите Use Nodes</div>
+                            <div class="step">Shift+A → Color → RGB Curves (настройка контраста)</div>
+                            <div class="step">Shift+A → Color → Hue/Saturation (насыщенность)</div>
+                            <div class="step">Shift+A → Filter → Glare (эффект свечения)</div>
+                            <div class="step">Соедините ноды: Render Layers → эффекты → Composite</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="task-number">30</td>
+                        <td class="task-name">Финальная сцена - натюрморт</td>
+                        <td class="task-description">
+                            <div class="step">Создайте стол (задание #2)</div>
+                            <div class="step">Разместите несколько объектов: чашка, фрукты, книги</div>
+                            <div class="step">Настройте камеру с интересным углом (правило третей)</div>
+                            <div class="step">Добавьте 3-точечное освещение: Key, Fill, Rim</div>
+                            <div class="step">Создайте реалистичные материалы для каждого объекта</div>
+                            <div class="step">Включите Ambient Occlusion в Render Properties</div>
+                            <div class="step">Настройте Depth of Field в камере</div>
+                            <div class="step">Отрендерите финальное изображение высокого качества</div>
+                            <span class="difficulty hard">Сложно</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

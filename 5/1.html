@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физика - Движение под углом к горизонту</title>
+    <!-- Подключаем MathJax для отображения математических формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 800px;
+        }
+        .formula-section {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .task {
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .vector {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Движение тела, брошенного под углом к горизонту</h1>
+
+    <div class="formula-section">
+        <h2>Основные уравнения движения</h2>
+        
+        <p><strong>Ускорение:</strong></p>
+        <p>$$\vec{a} = \vec{g}$$</p>
+        
+        <p><strong>Перемещение:</strong></p>
+        <p>$$\vec{s} = \vec{v}_0 t + \frac{\vec{g}t^2}{2}$$</p>
+        
+        <p><strong>Скорость:</strong></p>
+        <p>$$\vec{v} = \vec{v}_0 + \vec{g}t$$</p>
+        
+        <p><strong>Дано:</strong> $v_0$, $\alpha$</p>
+    </div>
+
+    <div class="formula-section">
+        <h2>Основные характеристики движения</h2>
+        
+        <div class="task">
+            <p><strong>1. Время полета</strong> $t_n = ?$</p>
+            <p>$$t_n = \frac{2v_0 \sin\alpha}{g}$$</p>
+        </div>
+        
+        <div class="task">
+            <p><strong>2. Максимальная высота подъема</strong> $h_{max} = ?$</p>
+            <p>$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</p>
+        </div>
+        
+        <div class="task">
+            <p><strong>3. Дальность полета</strong> $L = ?$</p>
+            <p>$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</p>
+        </div>
+        
+        <div class="task">
+            <p><strong>4. Уравнение траектории</strong> $y(x) = ?$</p>
+            <p>$$y = x \cdot \tan\alpha - \frac{gx^2}{2v_0^2 \cos^2\alpha}$$</p>
+        </div>
+    </div>
+
+    <div class="formula-section">
+        <h2>Составляющие начальной скорости</h2>
+        <p><strong>Горизонтальная составляющая:</strong></p>
+        <p>$$v_{0x} = v_0 \cos\alpha$$</p>
+        
+        <p><strong>Вертикальная составляющая:</strong></p>
+        <p>$$v_{0y} = v_0 \sin\alpha$$</p>
+    </div>
+
+    <div class="formula-section">
+        <h2>Скорость в произвольный момент времени</h2>
+        <p><strong>Горизонтальная скорость (постоянна):</strong></p>
+        <p>$$v_x = v_0 \cos\alpha$$</p>
+        
+        <p><strong>Вертикальная скорость:</strong></p>
+        <p>$$v_y = v_0 \sin\alpha - gt$$</p>
+        
+        <p><strong>Модуль полной скорости:</strong></p>
+        <p>$$v = \sqrt{v_x^2 + v_y^2}$$</p>
+    </div>
+
+    <script>
+        // Перерисовка формул при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        });
+    </script>
+</body>
+</html>

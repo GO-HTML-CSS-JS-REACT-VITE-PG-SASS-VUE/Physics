@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный курс: Движение тела под углом к горизонту</title>
+    <!-- Подключаем MathJax для отображения математических формул -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --accent-color: #4fc3f7;
+            --border-color: #444444;
+            --formula-bg: #2a2a2a;
+            --task-bg: #252525;
+            --solution-bg: #1e1e1e;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --accent-color: #2196f3;
+            --border-color: #dee2e6;
+            --formula-bg: #f1f3f4;
+            --task-bg: #f8f9fa;
+            --solution-bg: #e9ecef;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--accent-color);
+            padding: 10px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+        }
+
+        .theme-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .theme-icon {
+            font-size: 16px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-primary);
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin-top: 60px;
+        }
+
+        .content-section {
+            background-color: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .formula-block {
+            background-color: var(--formula-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent-color);
+            overflow-x: auto;
+        }
+
+        .formula {
+            font-size: 1.2em;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .formula-explanation {
+            margin: 10px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .equations-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .axis-title {
+            text-align: center;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .tasks-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .task-block {
+            background-color: var(--task-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .task-number {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .task-question {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .solution {
+            background-color: var(--solution-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .solution-title {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .section-divider {
+            height: 2px;
+            background: var(--accent-color);
+            margin: 30px 0;
+            opacity: 0.5;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+        }
+
+        .image-caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .equations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-switcher {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: flex-end;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Стили для MathJax */
+        .MathJax {
+            color: var(--text-primary) !important;
+        }
+
+        mjx-container[jax="CHTML"] {
+            color: var(--text-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="theme-switcher">
+            <button class="theme-btn" id="themeToggle">
+                <span class="theme-icon">🌙</span>
+                <span id="themeText">Тёмная тема</span>
+            </button>
+        </div>
+
+        <h1>Полный курс: Движение тела под углом к горизонту</h1>
+
+        <div class="navigation">
+            <a href="#theory" class="nav-btn">Теория и формулы</a>
+            <a href="#tasks" class="nav-btn">40 заданий с решениями</a>
+        </div>
+
+        <div id="theory">
+            <div class="content-section">
+                <h2>Траектория движения</h2>
+                
+                <div class="image-container">
+                    <img src="1.jpg" alt="Траектория движения тела, брошенного под углом к горизонту">
+                    <div class="image-caption">Рис. 1. Траектория движения тела, брошенного под углом к горизонту</div>
+                </div>
+                
+                <div class="formula-explanation">
+                    На рисунке показана параболическая траектория движения тела, брошенного под углом к горизонту. 
+                    Тело движется с постоянной горизонтальной скоростью и равноускоренно по вертикали под действием силы тяжести.
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Уравнения движения с постоянным ускорением</h2>
+                
+                <div class="formula-explanation">
+                    Основные кинематические уравнения для движения с постоянным ускорением:
+                </div>
+                
+                <div class="equations-grid">
+                    <div>
+                        <div class="axis-title">Ось X (горизонтальная)</div>
+                        <div class="formula-block">
+                            <div class="formula">$$S_x = v_{0x} t + \frac{g_x t^2}{2}$$</div>
+                            <div class="formula-explanation">Перемещение по оси X</div>
+                            
+                            <div class="formula">$$S_x = x - x_0$$</div>
+                            <div class="formula-explanation">Связь перемещения с координатами</div>
+                            
+                            <div class="formula">$$x(t) = x_0 + v_{0x} t + \frac{g_x t^2}{2}$$</div>
+                            <div class="formula-explanation">Зависимость координаты от времени</div>
+                            
+                            <div class="formula">$$v_x(t) = v_{0x} + g_x t$$</div>
+                            <div class="formula-explanation">Зависимость скорости от времени</div>
+                            
+                            <div class="formula">$$x_0 = 0$$</div>
+                            <div class="formula-explanation">Начальная координата по оси X</div>
+                            
+                            <div class="formula">$$v_{0x} = v_0 \cdot \cos \alpha$$</div>
+                            <div class="formula-explanation">Начальная скорость по оси X</div>
+                            
+                            <div class="formula">$$g_x = 0$$</div>
+                            <div class="formula-explanation">Ускорение по оси X (отсутствует)</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="axis-title">Ось Y (вертикальная)</div>
+                        <div class="formula-block">
+                            <div class="formula">$$S_y = v_{0y} t + \frac{g_y t^2}{2}$$</div>
+                            <div class="formula-explanation">Перемещение по оси Y</div>
+                            
+                            <div class="formula">$$S_y = y - y_0$$</div>
+                            <div class="formula-explanation">Связь перемещения с координатами</div>
+                            
+                            <div class="formula">$$y(t) = y_0 + v_{0y} t + \frac{g_y t^2}{2}$$</div>
+                            <div class="formula-explanation">Зависимость координаты от времени</div>
+                            
+                            <div class="formula">$$v_y(t) = v_{0y} + g_y t$$</div>
+                            <div class="formula-explanation">Зависимость скорости от времени</div>
+                            
+                            <div class="formula">$$y_0 = 0$$</div>
+                            <div class="formula-explanation">Начальная координата по оси Y</div>
+                            
+                            <div class="formula">$$v_{0y} = v_0 \cdot \sin \alpha$$</div>
+                            <div class="formula-explanation">Начальная скорость по оси Y</div>
+                            
+                            <div class="formula">$$g_y = -g$$</div>
+                            <div class="formula-explanation">Ускорение по оси Y (ускорение свободного падения)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Дальность полёта</h2>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$\sin 2\alpha = 2 \sin \alpha \cos \alpha$$
+                    </div>
+                </div>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$S_x = v_0 t_2 \cos \alpha$$
+                    </div>
+                    <div class="formula-explanation">
+                        где $t_2$ - время полёта
+                    </div>
+                </div>
+                
+                <div class="formula-explanation">
+                    Условия: $y_2 = 0$, $y_0 = 0$
+                </div>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$y_2 = 0 = v_0 t_2 \sin \alpha - \frac{g t_2^2}{2}$$
+                    </div>
+                    <div class="formula-explanation">
+                        Делим на $t_2$:
+                    </div>
+                    <div class="formula">
+                        $$0 = v_0 \sin \alpha - \frac{g t_2}{2}$$
+                    </div>
+                    <div class="formula-explanation">
+                        Отсюда:
+                    </div>
+                    <div class="formula">
+                        $$t_2 = \frac{2 v_0 \sin \alpha}{g}$$
+                    </div>
+                </div>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$S_x = \frac{v_0^2}{g} \sin 2\alpha$$
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Максимальная высота подъёма</h2>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$v_{y1} = v_0 \sin \alpha - g t_1 = 0$$
+                    </div>
+                    <div class="formula-explanation">
+                        где $t_1$ - время подъёма
+                    </div>
+                    <div class="formula-explanation">
+                        Следовательно:
+                    </div>
+                    <div class="formula">
+                        $$t_1 = \frac{v_0 \sin \alpha}{g}$$
+                    </div>
+                </div>
+                
+                <div class="formula-explanation">
+                    При $y_0 = 0$:
+                </div>
+                
+                <div class="formula-block">
+                    <div class="formula">
+                        $$y_1 = h_{\text{max}} = v_0 t_1 \sin \alpha - \frac{g t_1^2}{2}$$
+                    </div>
+                    <div class="formula-explanation">
+                        Подставляем $t_1$:
+                    </div>
+                    <div class="formula">
+                        $$h_{\text{max}} = \frac{v_0^2 \sin^2 \alpha}{2g}$$
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div id="tasks">
+            <h2>40 заданий с решениями</h2>
+
+            <div class="navigation">
+                <a href="#tasks-1-10" class="nav-btn">Задания 1-10</a>
+                <a href="#tasks-11-20" class="nav-btn">Задания 11-20</a>
+                <a href="#tasks-21-30" class="nav-btn">Задания 21-30</a>
+                <a href="#tasks-31-40" class="nav-btn">Задания 31-40</a>
+            </div>
+
+            <div class="tasks-grid">
+                <!-- Задания 1-10 -->
+                <div id="tasks-1-10">
+                    <h3>Задания 1-10</h3>
+                    
+                    <!-- Задание 1 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 1</div>
+                        <div class="task-question">
+                            Тело брошено под углом 30° к горизонту с начальной скоростью 20 м/с. Найдите время полёта.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$t = \frac{2v_0 \sin\alpha}{g}$$</div>
+                            <div class="formula">$$t = \frac{2 \cdot 20 \cdot \sin 30°}{10} = \frac{40 \cdot 0.5}{10} = 2 \text{ с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 2 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 2</div>
+                        <div class="task-question">
+                            Мяч брошен со скоростью 15 м/с под углом 45° к горизонту. Найдите максимальную высоту подъёма.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$h_{max} = \frac{15^2 \cdot (\sin 45°)^2}{2 \cdot 10} = \frac{225 \cdot 0.5}{20} = 5.625 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 3 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 3</div>
+                        <div class="task-question">
+                            Снаряд вылетает из орудия со скоростью 100 м/с под углом 60° к горизонту. Найдите дальность полёта.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$L = \frac{100^2 \cdot \sin 120°}{10} = \frac{10000 \cdot \sqrt{3}/2}{10} = 500\sqrt{3} \approx 866 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 4 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 4</div>
+                        <div class="task-question">
+                            Тело брошено под углом к горизонту и упало на расстоянии 40 м. Время полёта составило 4 с. Найдите начальную скорость и угол броска.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = v_0 \cos\alpha \cdot t$$</div>
+                            <div class="formula">$$t = \frac{2v_0 \sin\alpha}{g}$$</div>
+                            <div class="formula">$$40 = v_0 \cos\alpha \cdot 4 \Rightarrow v_0 \cos\alpha = 10$$</div>
+                            <div class="formula">$$4 = \frac{2v_0 \sin\alpha}{10} \Rightarrow v_0 \sin\alpha = 20$$</div>
+                            <div class="formula">$$\tan\alpha = \frac{v_0 \sin\alpha}{v_0 \cos\alpha} = \frac{20}{10} = 2 \Rightarrow \alpha \approx 63.4°$$</div>
+                            <div class="formula">$$v_0 = \sqrt{(v_0 \cos\alpha)^2 + (v_0 \sin\alpha)^2} = \sqrt{10^2 + 20^2} = \sqrt{500} \approx 22.36 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 5 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 5</div>
+                        <div class="task-question">
+                            Под каким углом к горизонту нужно бросить тело, чтобы дальность полёта была максимальной?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">Максимум достигается при $\sin 2\alpha = 1$</div>
+                            <div class="formula">$$2\alpha = 90° \Rightarrow \alpha = 45°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 6 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 6</div>
+                        <div class="task-question">
+                            Два тела брошены с одинаковой скоростью под углами 30° и 60°. Во сколько раз отличаются максимальные высоты их подъёма?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$\frac{h_1}{h_2} = \frac{\sin^2 30°}{\sin^2 60°} = \frac{(1/2)^2}{(\sqrt{3}/2)^2} = \frac{1/4}{3/4} = \frac{1}{3}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 7 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 7</div>
+                        <div class="task-question">
+                            Камень брошен с высоты 5 м со скоростью 10 м/с под углом 30° к горизонту. Найдите время полёта до падения на землю.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$y = y_0 + v_0 \sin\alpha \cdot t - \frac{gt^2}{2}$$</div>
+                            <div class="formula">$$0 = 5 + 10 \cdot \sin 30° \cdot t - 5t^2$$</div>
+                            <div class="formula">$$0 = 5 + 5t - 5t^2 \Rightarrow t^2 - t - 1 = 0$$</div>
+                            <div class="formula">$$t = \frac{1 + \sqrt{1 + 4}}{2} = \frac{1 + \sqrt{5}}{2} \approx 1.62 \text{ с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 8 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 8</div>
+                        <div class="task-question">
+                            Мяч брошен под углом 45° и достиг максимальной высоты 10 м. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$10 = \frac{v_0^2 \cdot (\sin 45°)^2}{20} = \frac{v_0^2 \cdot 0.5}{20}$$</div>
+                            <div class="formula">$$v_0^2 = 400 \Rightarrow v_0 = 20 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 9 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 9</div>
+                        <div class="task-question">
+                            Тело брошено со скоростью 25 м/с. При каком угле броска время полёта составит 3 с?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$t = \frac{2v_0 \sin\alpha}{g}$$</div>
+                            <div class="formula">$$3 = \frac{2 \cdot 25 \cdot \sin\alpha}{10} = 5 \sin\alpha$$</div>
+                            <div class="formula">$$\sin\alpha = 0.6 \Rightarrow \alpha \approx 36.9°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 10 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 10</div>
+                        <div class="task-question">
+                            Два тела брошены с одинаковой скоростью. Одно под углом 30°, другое под углом 60°. Во сколько раз отличаются дальности их полёта?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$\frac{L_1}{L_2} = \frac{\sin 60°}{\sin 120°} = \frac{\sin 60°}{\sin 60°} = 1$$</div>
+                            <div>Дальности полёта одинаковы!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tasks-11-20">
+                    <h3>Задания 11-20</h3>
+                    
+                    <!-- Задание 11 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 11</div>
+                        <div class="task-question">
+                            Тело брошено под углом 30° к горизонту. В верхней точке траектории его скорость равна 10 м/с. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">В верхней точке $v_y = 0$, $v = v_x = v_0 \cos\alpha$</div>
+                            <div class="formula">$$10 = v_0 \cos 30° = v_0 \cdot \frac{\sqrt{3}}{2}$$</div>
+                            <div class="formula">$$v_0 = \frac{20}{\sqrt{3}} \approx 11.55 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 12 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 12</div>
+                        <div class="task-question">
+                            Мяч брошен со скоростью 20 м/с под углом 60°. Найдите скорость мяча через 1 с после броска.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$v_x = v_0 \cos\alpha = 20 \cdot \cos 60° = 10 \text{ м/с}$$</div>
+                            <div class="formula">$$v_y = v_0 \sin\alpha - gt = 20 \cdot \sin 60° - 10 \cdot 1 = 17.32 - 10 = 7.32 \text{ м/с}$$</div>
+                            <div class="formula">$$v = \sqrt{v_x^2 + v_y^2} = \sqrt{100 + 53.6} \approx 12.37 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 13 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 13</div>
+                        <div class="task-question">
+                            Под каким углом к горизонту брошено тело, если его скорость в наивысшей точке траектории равна половине начальной скорости?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">В верхней точке $v = v_0 \cos\alpha$</div>
+                            <div class="formula">$$\frac{v_0}{2} = v_0 \cos\alpha \Rightarrow \cos\alpha = \frac{1}{2} \Rightarrow \alpha = 60°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 14 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 14</div>
+                        <div class="task-question">
+                            Тело брошено с начальной скоростью 30 м/с. Найдите углы бросания, при которых дальность полёта составит 45 м.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$45 = \frac{900 \cdot \sin 2\alpha}{10} = 90 \sin 2\alpha$$</div>
+                            <div class="formula">$$\sin 2\alpha = 0.5 \Rightarrow 2\alpha = 30° \text{ или } 150°$$</div>
+                            <div class="formula">$$\alpha = 15° \text{ или } 75°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 15 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 15</div>
+                        <div class="task-question">
+                            Снаряд вылетает из орудия под углом 40° с начальной скоростью 200 м/с. На каком расстоянии от орудия он упадёт?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$L = \frac{40000 \cdot \sin 80°}{10} = 4000 \cdot 0.9848 \approx 3939 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 16 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 16</div>
+                        <div class="task-question">
+                            Мяч брошен под углом 30° и упал на расстоянии 20 м. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$20 = \frac{v_0^2 \cdot \sin 60°}{10} = \frac{v_0^2 \cdot 0.866}{10}$$</div>
+                            <div class="formula">$$v_0^2 = \frac{200}{0.866} \approx 231 \Rightarrow v_0 \approx 15.2 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 17 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 17</div>
+                        <div class="task-question">
+                            Тело брошено под углом 45° к горизонту. В какой момент времени его скорость будет направлена под углом 30° к горизонту?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$\tan\varphi = \frac{v_y}{v_x} = \frac{v_0 \sin\alpha - gt}{v_0 \cos\alpha}$$</div>
+                            <div class="formula">$$\tan 30° = \frac{v_0 \sin 45° - 10t}{v_0 \cos 45°} = 1 - \frac{10t}{v_0 \cos 45°}$$</div>
+                            <div>Для решения нужно знать $v_0$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 18 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 18</div>
+                        <div class="task-question">
+                            Найдите отношение максимальной высоты подъёма к дальности полёта для тела, брошенного под углом $\alpha$ к горизонту.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}, \quad L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$\frac{h_{max}}{L} = \frac{\sin^2\alpha}{2\sin 2\alpha} = \frac{\sin^2\alpha}{4\sin\alpha\cos\alpha} = \frac{\tan\alpha}{4}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 19 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 19</div>
+                        <div class="task-question">
+                            Тело брошено со скоростью 15 м/с. При каком угле броска дальность полёта будет в 2 раза больше максимальной высоты?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = 2h_{max}$$</div>
+                            <div class="formula">$$\frac{v_0^2 \sin 2\alpha}{g} = 2 \cdot \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$\sin 2\alpha = \sin^2\alpha \Rightarrow 2\sin\alpha\cos\alpha = \sin^2\alpha$$</div>
+                            <div class="formula">$$2\cos\alpha = \sin\alpha \Rightarrow \tan\alpha = 2 \Rightarrow \alpha \approx 63.4°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 20 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 20</div>
+                        <div class="task-question">
+                            Мяч брошен с высоты 10 м со скоростью 12 м/с под углом 30° к горизонту. Найдите время полёта.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$y = y_0 + v_0 \sin\alpha \cdot t - \frac{gt^2}{2}$$</div>
+                            <div class="formula">$$0 = 10 + 12 \cdot \sin 30° \cdot t - 5t^2$$</div>
+                            <div class="formula">$$0 = 10 + 6t - 5t^2 \Rightarrow 5t^2 - 6t - 10 = 0$$</div>
+                            <div class="formula">$$t = \frac{6 + \sqrt{36 + 200}}{10} = \frac{6 + \sqrt{236}}{10} \approx \frac{6 + 15.36}{10} \approx 2.14 \text{ с}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Продолжение до 40 заданий -->
+                <!-- Задания 21-30 -->
+                <div class="section-divider"></div>
+
+                <div id="tasks-21-30">
+                    <h3>Задания 21-30</h3>
+
+                    <!-- Задание 21 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 21</div>
+                        <div class="task-question">
+                            Тело брошено под углом 60°. Через какое время его скорость составит 45° к горизонту?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$\tan\varphi = \frac{v_y}{v_x} = \frac{v_0 \sin\alpha - gt}{v_0 \cos\alpha}$$</div>
+                            <div class="formula">$$\tan 45° = 1 = \frac{v_0 \sin 60° - 10t}{v_0 \cos 60°}$$</div>
+                            <div>Для решения нужно знать $v_0$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 22 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 22</div>
+                        <div class="task-question">
+                            Найдите время подъёма тела, брошенного под углом $\alpha$, если известно, что оно достигло высоты $h$.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h = v_0 \sin\alpha \cdot t - \frac{gt^2}{2}$$</div>
+                            <div class="formula">Решаем квадратное уравнение относительно $t$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 23 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 23</div>
+                        <div class="task-question">
+                            Тело брошено с начальной скоростью 25 м/с. Под каким углом его нужно бросить, чтобы оно упало на расстоянии 30 м?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$30 = \frac{625 \cdot \sin 2\alpha}{10} = 62.5 \sin 2\alpha$$</div>
+                            <div class="formula">$$\sin 2\alpha = 0.48 \Rightarrow 2\alpha \approx 28.7° \text{ или } 151.3°$$</div>
+                            <div class="formula">$$\alpha \approx 14.35° \text{ или } 75.65°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 24 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 24</div>
+                        <div class="task-question">
+                            Мяч брошен со скоростью 18 м/с под углом 53° к горизонту. Найдите координаты мяча через 1.5 с.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$x = v_0 \cos\alpha \cdot t = 18 \cdot \cos 53° \cdot 1.5 \approx 18 \cdot 0.6 \cdot 1.5 = 16.2 \text{ м}$$</div>
+                            <div class="formula">$$y = v_0 \sin\alpha \cdot t - \frac{gt^2}{2} = 18 \cdot \sin 53° \cdot 1.5 - 5 \cdot 2.25$$</div>
+                            <div class="formula">$$y \approx 18 \cdot 0.8 \cdot 1.5 - 11.25 = 21.6 - 11.25 = 10.35 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 25 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 25</div>
+                        <div class="task-question">
+                            Докажите, что для тела, брошенного под углом к горизонту, траектория движения является параболой.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$x = v_0 \cos\alpha \cdot t \Rightarrow t = \frac{x}{v_0 \cos\alpha}$$</div>
+                            <div class="formula">$$y = v_0 \sin\alpha \cdot t - \frac{gt^2}{2} = x \cdot \tan\alpha - \frac{gx^2}{2v_0^2 \cos^2\alpha}$$</div>
+                            <div class="formula">Это уравнение параболы $y = ax - bx^2$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 26 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 26</div>
+                        <div class="task-question">
+                            Тело брошено под углом 30°. В момент времени 1 с его скорость равна 15 м/с. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$v_x = v_0 \cos 30° = 0.866 v_0$$</div>
+                            <div class="formula">$$v_y = v_0 \sin 30° - 10 \cdot 1 = 0.5 v_0 - 10$$</div>
+                            <div class="formula">$$v^2 = v_x^2 + v_y^2 = (0.866 v_0)^2 + (0.5 v_0 - 10)^2 = 225$$</div>
+                            <div class="formula">$$0.75 v_0^2 + 0.25 v_0^2 - 10 v_0 + 100 = 225$$</div>
+                            <div class="formula">$$v_0^2 - 10 v_0 - 125 = 0$$</div>
+                            <div class="formula">$$v_0 = \frac{10 + \sqrt{100 + 500}}{2} = \frac{10 + \sqrt{600}}{2} \approx \frac{10 + 24.49}{2} \approx 17.25 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 27 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 27</div>
+                        <div class="task-question">
+                            Найдите радиус кривизны траектории в наивысшей точке для тела, брошенного под углом $\alpha$ с начальной скоростью $v_0$.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">В верхней точке $v = v_0 \cos\alpha$, $a_n = g$</div>
+                            <div class="formula">$$R = \frac{v^2}{a_n} = \frac{v_0^2 \cos^2\alpha}{g}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 28 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 28</div>
+                        <div class="task-question">
+                            Тело брошено с поверхности земли и упало на расстоянии 100 м. Максимальная высота подъёма составила 20 м. Найдите начальную скорость и угол броска.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g} = 20$$</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g} = 100$$</div>
+                            <div class="formula">$$\frac{h_{max}}{L} = \frac{\sin^2\alpha}{2\sin 2\alpha} = \frac{\sin^2\alpha}{4\sin\alpha\cos\alpha} = \frac{\tan\alpha}{4} = \frac{20}{100} = 0.2$$</div>
+                            <div class="formula">$$\tan\alpha = 0.8 \Rightarrow \alpha \approx 38.66°$$</div>
+                            <div class="formula">$$v_0^2 = \frac{Lg}{\sin 2\alpha} = \frac{1000}{\sin 77.32°} \approx \frac{1000}{0.975} \approx 1025.6$$</div>
+                            <div class="formula">$$v_0 \approx 32.02 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 29 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 29</div>
+                        <div class="task-question">
+                            Мяч брошен под углом 45° и через 2 с его скорость направлена горизонтально. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">Скорость направлена горизонтально когда $v_y = 0$</div>
+                            <div class="formula">$$v_y = v_0 \sin 45° - 10 \cdot 2 = 0$$</div>
+                            <div class="formula">$$v_0 \cdot \frac{\sqrt{2}}{2} = 20 \Rightarrow v_0 = 20\sqrt{2} \approx 28.28 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 30 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 30</div>
+                        <div class="task-question">
+                            Тело брошено со скоростью 20 м/с. Найдите его скорость в момент, когда оно находится на высоте 10 м.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">Используем закон сохранения энергии:</div>
+                            <div class="formula">$$\frac{mv_0^2}{2} = mgh + \frac{mv^2}{2}$$</div>
+                            <div class="formula">$$v^2 = v_0^2 - 2gh = 400 - 200 = 200$$</div>
+                            <div class="formula">$$v = \sqrt{200} \approx 14.14 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Задания 31-40 -->
+                <div class="section-divider"></div>
+
+                <div id="tasks-31-40">
+                    <h3>Задания 31-40</h3>
+
+                    <!-- Задание 31 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 31</div>
+                        <div class="task-question">
+                            Два тела брошены из одной точки с одинаковыми скоростями 25 м/с под углами 30° и 60°. Какое расстояние будет между ними через 1 с?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div>Координаты первого тела:</div>
+                            <div class="formula">$$x_1 = 25 \cdot \cos 30° \cdot 1 = 21.65 \text{ м}$$</div>
+                            <div class="formula">$$y_1 = 25 \cdot \sin 30° \cdot 1 - 5 = 12.5 - 5 = 7.5 \text{ м}$$</div>
+                            <div>Координаты второго тела:</div>
+                            <div class="formula">$$x_2 = 25 \cdot \cos 60° \cdot 1 = 12.5 \text{ м}$$</div>
+                            <div class="formula">$$y_2 = 25 \cdot \sin 60° \cdot 1 - 5 = 21.65 - 5 = 16.65 \text{ м}$$</div>
+                            <div class="formula">$$d = \sqrt{(21.65-12.5)^2 + (7.5-16.65)^2} = \sqrt{9.15^2 + (-9.15)^2} = \sqrt{167.4} \approx 12.94 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 32 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 32</div>
+                        <div class="task-question">
+                            Тело брошено под углом $\alpha$. Найдите отношение времени подъёма ко всему времени полёта.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$t_{подъёма} = \frac{v_0 \sin\alpha}{g}, \quad t_{полёта} = \frac{2v_0 \sin\alpha}{g}$$</div>
+                            <div class="formula">$$\frac{t_{подъёма}}{t_{полёта}} = \frac{1}{2}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 33 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 33</div>
+                        <div class="task-question">
+                            Мяч брошен с начальной скоростью 15 м/с. Под каким углом его нужно бросить, чтобы он упал на расстоянии 20 м?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$L = \frac{v_0^2 \sin 2\alpha}{g}$$</div>
+                            <div class="formula">$$20 = \frac{225 \cdot \sin 2\alpha}{10} = 22.5 \sin 2\alpha$$</div>
+                            <div class="formula">$$\sin 2\alpha = \frac{20}{22.5} \approx 0.8889 \Rightarrow 2\alpha \approx 62.7° \text{ или } 117.3°$$</div>
+                            <div class="formula">$$\alpha \approx 31.35° \text{ или } 58.65°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 34 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 34</div>
+                        <div class="task-question">
+                            Найдите угол, под которым нужно бросить тело, чтобы его скорость в наивысшей точке составляла 60% от начальной скорости.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">В верхней точке $v = v_0 \cos\alpha$</div>
+                            <div class="formula">$$0.6 v_0 = v_0 \cos\alpha \Rightarrow \cos\alpha = 0.6 \Rightarrow \alpha \approx 53.13°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 35 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 35</div>
+                        <div class="task-question">
+                            Тело брошено под углом 30° и достигло высоты 5 м. Найдите начальную скорость.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$5 = \frac{v_0^2 \cdot (\sin 30°)^2}{20} = \frac{v_0^2 \cdot 0.25}{20}$$</div>
+                            <div class="formula">$$v_0^2 = 400 \Rightarrow v_0 = 20 \text{ м/с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 36 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 36</div>
+                        <div class="task-question">
+                            Мяч брошен со скоростью 10 м/с. При каком угле броска время полёта будет равно 1.5 с?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$t = \frac{2v_0 \sin\alpha}{g}$$</div>
+                            <div class="formula">$$1.5 = \frac{2 \cdot 10 \cdot \sin\alpha}{10} = 2 \sin\alpha$$</div>
+                            <div class="formula">$$\sin\alpha = 0.75 \Rightarrow \alpha \approx 48.59°$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 37 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 37</div>
+                        <div class="task-question">
+                            Тело брошено с высоты 15 м со скоростью 12 м/с под углом 30° к горизонту. Найдите дальность полёта.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$y = y_0 + v_0 \sin\alpha \cdot t - \frac{gt^2}{2}$$</div>
+                            <div class="formula">$$0 = 15 + 12 \cdot \sin 30° \cdot t - 5t^2$$</div>
+                            <div class="formula">$$0 = 15 + 6t - 5t^2 \Rightarrow 5t^2 - 6t - 15 = 0$$</div>
+                            <div class="formula">$$t = \frac{6 + \sqrt{36 + 300}}{10} = \frac{6 + \sqrt{336}}{10} \approx \frac{6 + 18.33}{10} \approx 2.433 \text{ с}$$</div>
+                            <div class="formula">$$L = v_0 \cos\alpha \cdot t = 12 \cdot \cos 30° \cdot 2.433 \approx 10.392 \cdot 2.433 \approx 25.28 \text{ м}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 38 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 38</div>
+                        <div class="task-question">
+                            Найдите скорость тела в момент падения на землю, если оно было брошено под углом $\alpha$ с начальной скоростью $v_0$.
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">По закону сохранения энергии скорость при падении равна начальной скорости:</div>
+                            <div class="formula">$$v = v_0$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 39 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 39</div>
+                        <div class="task-question">
+                            Тело брошено под углом 60°. Через какое время его скорость будет направлена под углом 45° к горизонту, если начальная скорость 20 м/с?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$\tan\varphi = \frac{v_y}{v_x} = \frac{v_0 \sin\alpha - gt}{v_0 \cos\alpha}$$</div>
+                            <div class="formula">$$\tan 45° = 1 = \frac{20 \cdot \sin 60° - 10t}{20 \cdot \cos 60°} = \frac{17.32 - 10t}{10}$$</div>
+                            <div class="formula">$$10 = 17.32 - 10t \Rightarrow 10t = 7.32 \Rightarrow t = 0.732 \text{ с}$$</div>
+                        </div>
+                    </div>
+
+                    <!-- Задание 40 -->
+                    <div class="task-block">
+                        <div class="task-number">Задание 40</div>
+                        <div class="task-question">
+                            Два тела брошены из одной точки с одинаковыми скоростями. Одно под углом 30°, другое под углом 60°. Какое из них достигнет большей высоты и во сколько раз?
+                        </div>
+                        <div class="solution">
+                            <div class="solution-title">Решение:</div>
+                            <div class="formula">$$h_{max} = \frac{v_0^2 \sin^2\alpha}{2g}$$</div>
+                            <div class="formula">$$\frac{h_{60°}}{h_{30°}} = \frac{\sin^2 60°}{\sin^2 30°} = \frac{(\sqrt{3}/2)^2}{(1/2)^2} = \frac{3/4}{1/4} = 3$$</div>
+                            <div>Тело, брошенное под углом 60°, достигнет в 3 раза большей высоты.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для переключения темы
+        function toggleTheme() {
+            const htmlElement = document.documentElement;
+            const themeBtn = document.getElementById('themeToggle');
+            const themeIcon = themeBtn.querySelector('.theme-icon');
+            const themeText = document.getElementById('themeText');
+            
+            if (htmlElement.getAttribute('data-theme') === 'light') {
+                htmlElement.removeAttribute('data-theme');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Тёмная тема';
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // Перерисовка MathJax после смены темы
+            if (window.MathJax) {
+                setTimeout(() => {
+                    MathJax.typesetPromise();
+                }, 100);
+            }
+        }
+
+        // Инициализация темы при загрузке
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeBtn = document.getElementById('themeToggle');
+            const themeIcon = themeBtn.querySelector('.theme-icon');
+            const themeText = document.getElementById('themeText');
+            
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Тёмная тема';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Светлая тема';
+            }
+            
+            // Назначаем обработчик события на кнопку
+            themeBtn.addEventListener('click', toggleTheme);
+        }
+
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', initTheme);
+
+        // Перерисовка формул при изменении размера окна
+        window.addEventListener('resize', function() {
+            if (window.MathJax) {
+                MathJax.typesetPromise();
+            }
+        });
+    </script>
+</body>
+</html>
