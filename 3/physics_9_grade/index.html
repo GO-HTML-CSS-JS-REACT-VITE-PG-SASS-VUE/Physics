@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физика 9 класс</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .accordion { max-width: 800px; margin: 0 auto; }
+        .section { background: white; border: 1px solid #ddd; margin-bottom: 10px; }
+        .section-header { padding: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; background: #f0f0f0; }
+        .section-header::after { content: "+"; }
+        .section.active .section-header::after { content: "-"; }
+        .topics { padding: 0 15px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .section.active .topics { max-height: 500px; padding: 15px; }
+        .topic-list { list-style: none; }
+        .topic-list li { padding: 8px 0; border-bottom: 1px solid #eee; }
+        .topic-list li:last-child { border-bottom: none; }
+        .topic-link { color: #333; text-decoration: none; }
+        .topic-link:hover { color: #0066cc; }
+    </style>
+</head>
+<body>
+    <div class="accordion">
+
+        <div class="section">
+            <div class="section-header">Механика</div>
+            <div class="topics">
+                <ul class="topic-list">
+                    <li><a href="topics/mechanics/kinematika.html" class="topic-link">Кинематика</a></li>
+                    <li><a href="topics/mechanics/dinamika.html" class="topic-link">Динамика</a></li>
+                    <li><a href="topics/mechanics/statika.html" class="topic-link">Статика</a></li>
+                    <li><a href="topics/mechanics/newton_laws.html" class="topic-link">Законы Ньютона</a></li>
+                    <li><a href="topics/mechanics/circular_motion.html" class="topic-link">Движение по окружности</a></li>
+                    <li><a href="topics/mechanics/impulse_conservation.html" class="topic-link">Закон сохранения импульса</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">Тепловые явления</div>
+            <div class="topics">
+                <ul class="topic-list">
+                    <li><a href="topics/thermal/temperature.html" class="topic-link">Температура и тепловое равновесие</a></li>
+                    <li><a href="topics/thermal/heat_transfer.html" class="topic-link">Теплопередача</a></li>
+                    <li><a href="topics/thermal/gas_laws.html" class="topic-link">Уравнение состояния идеального газа</a></li>
+                    <li><a href="topics/thermal/thermodynamics.html" class="topic-link">Первый закон термодинамики</a></li>
+                    <li><a href="topics/thermal/heat_engines.html" class="topic-link">Тепловые двигатели</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">Электромагнетизм</div>
+            <div class="topics">
+                <ul class="topic-list">
+                    <li><a href="topics/electromagnetism/electric_field.html" class="topic-link">Электрическое поле</a></li>
+                    <li><a href="topics/electromagnetism/current_laws.html" class="topic-link">Законы постоянного тока</a></li>
+                    <li><a href="topics/electromagnetism/magnetic_field.html" class="topic-link">Магнитное поле</a></li>
+                    <li><a href="topics/electromagnetism/induction.html" class="topic-link">Электромагнитная индукция</a></li>
+                    <li><a href="topics/electromagnetism/oscillations.html" class="topic-link">Электромагнитные колебания</a></li>
+                    <li><a href="topics/electromagnetism/waves.html" class="topic-link">Электромагнитные волны</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">Оптика</div>
+            <div class="topics">
+                <ul class="topic-list">
+                    <li><a href="topics/optics/reflection_refraction.html" class="topic-link">Отражение и преломление света</a></li>
+                    <li><a href="topics/optics/lenses.html" class="topic-link">Линзы</a></li>
+                    <li><a href="topics/optics/optical_instruments.html" class="topic-link">Оптические приборы</a></li>
+                    <li><a href="topics/optics/wave_properties.html" class="topic-link">Волновые свойства света</a></li>
+                    <li><a href="topics/optics/dispersion.html" class="topic-link">Дисперсия света</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">Квантовая физика</div>
+            <div class="topics">
+                <ul class="topic-list">
+                    <li><a href="topics/quantum/photoeffect.html" class="topic-link">Фотоэффект</a></li>
+                    <li><a href="topics/quantum/atom_structure.html" class="topic-link">Строение атома</a></li>
+                    <li><a href="topics/quantum/nuclear_reactions.html" class="topic-link">Ядерные реакции</a></li>
+                    <li><a href="topics/quantum/radioactivity.html" class="topic-link">Радиоактивность</a></li>
+                    <li><a href="topics/quantum/elementary_particles.html" class="topic-link">Элементарные частицы</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.parentElement;
+                section.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

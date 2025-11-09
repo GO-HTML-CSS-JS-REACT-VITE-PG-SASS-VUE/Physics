@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Физика 9 класс</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f7fa; padding: 20px; }
+        .accordion { max-width: 800px; margin: 0 auto; }
+        .section { background: white; border-radius: 12px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-header { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 18px; transition: background 0.3s; }
+        .section-header:hover { background: #f8f9fa; }
+        .section-header::after { content: "▼"; font-size: 12px; transition: transform 0.3s; }
+        .section.active .section-header::after { transform: rotate(180deg); }
+        .topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; padding: 0 20px 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+        .section.active .topics { max-height: 500px; padding: 0 20px 20px; }
+        .topic { background: #667eea; color: white; padding: 12px; border-radius: 8px; text-align: center; text-decoration: none; font-size: 14px; transition: all 0.3s; }
+        .topic:hover { background: #5a6fd8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
+    </style>
+</head>
+<body>
+    <div class="accordion">
+        <div class="section">
+            <div class="section-header">Механика</div>
+            <div class="topics">
+                <a href="#" class="topic">Кинематика</a>
+                <a href="#" class="topic">Динамика</a>
+                <a href="#" class="topic">Статика</a>
+                <a href="#" class="topic">Законы Ньютона</a>
+                <a href="#" class="topic">Движение по окружности</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">Тепловые явления</div>
+            <div class="topics">
+                <a href="#" class="topic">Температура</a>
+                <a href="#" class="topic">Теплопередача</a>
+                <a href="#" class="topic">Уравнение состояния</a>
+                <a href="#" class="topic">Первый закон термодинамики</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">Электромагнетизм</div>
+            <div class="topics">
+                <a href="#" class="topic">Электрическое поле</a>
+                <a href="#" class="topic">Законы постоянного тока</a>
+                <a href="#" class="topic">Магнитное поле</a>
+                <a href="#" class="topic">Электромагнитная индукция</a>
+                <a href="#" class="topic">Электромагнитные волны</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">Оптика</div>
+            <div class="topics">
+                <a href="#" class="topic">Отражение света</a>
+                <a href="#" class="topic">Преломление света</a>
+                <a href="#" class="topic">Линзы</a>
+                <a href="#" class="topic">Оптические приборы</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">Квантовая физика</div>
+            <div class="topics">
+                <a href="#" class="topic">Фотоэффект</a>
+                <a href="#" class="topic">Строение атома</a>
+                <a href="#" class="topic">Ядерные реакции</a>
+                <a href="#" class="topic">Радиоактивность</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.parentElement;
+                section.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

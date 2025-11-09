@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Buttons</title>
+    <style>
+        body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #f0f0f0; font-family: system-ui, sans-serif; }
+        .btn { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; padding: 24px; }
+        .btn a { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #333; }
+        .btn li { width: 70px; height: 70px; background: #fff; border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: all 0.3s ease; list-style: none; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; }
+        .btn span { font-size: 12px; font-weight: 500; text-align: center; }
+        .btn li:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.15); background: #667eea; }
+        .btn li:hover + span { color: #667eea; }
+    </style>
+</head>
+<body>
+    <ul class="btn">
+        <a href="#"><li>🔍</li><span>Search</span></a>
+        <a href="#"><li>🏠</li><span>Home</span></a>
+        <a href="#"><li>⭐</li><span>Favorites</span></a>
+        <a href="#"><li>⚙️</li><span>Settings</span></a>
+        <a href="#"><li>👤</li><span>Profile</span></a>
+        <a href="#"><li>📧</li><span>Mail</span></a>
+        <a href="#"><li>📁</li><span>Files</span></a>
+        <a href="#"><li>🔔</li><span>Alerts</span></a>
+        <a href="#"><li>🛒</li><span>Cart</span></a>
+        <a href="#"><li>❓</li><span>Help</span></a>
+    </ul>
+</body>
+</html>
